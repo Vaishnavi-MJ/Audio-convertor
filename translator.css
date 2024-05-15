@@ -170,6 +170,7 @@ header .welcome-text {
     text-align: center;
     background: #e4e4e4;
     border-radius: 20px;    
+    margin-bottom: 40px;
 }
 .sectionone1{
 margin-right: 5px;
@@ -309,4 +310,8 @@ border-radius: 5px;
       box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.1);
       transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-25px);
     }
+  }
+  .welcome-text{
+    font-weight: 700;
+
   }

@@ -2,19 +2,29 @@ let transcript_text ={}
 let baseurl="https://digital-converter.onrender.com"
 var recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
-
+    recognition.continuous = true;
     $('#start').click(function() {
+        $("#start").attr('disabled', true)
+        $("#recording").removeClass("d-none")
+        
+        
         console.log("start");
         recognition.start();
     });
 
     $('#stop').click(function() {
+        $("#recording").addClass("d-none")
+        $("#start").attr('disabled', false)
+        
         console.log("stop");
         recognition.stop();
+        
     });
-
+    
     recognition.onresult = function(event) {
         console.log("onresult");
+        $("#start").attr('disabled', false)
+        $("#recording").addClass("d-none")
         var transcript = event.results[0][0].transcript;
         $('#output').text(transcript);
         transcript_text.text = transcript
@@ -27,6 +37,8 @@ var recognition = new webkitSpeechRecognition();
 
 
 async function uploadSpeech(transcript) {
+    $("#stop span").removeClass("d-none");
+    $("#stop , #start").attr('disabled', true)
     // Upload the audio blob to the server
     let headers = {
         "Content-Type" : 'application/json'
@@ -39,6 +51,8 @@ async function uploadSpeech(transcript) {
         });
 
         if (response.ok) {
+            $("#stop span").addClass("d-none");
+            $("#stop , #start").attr('disabled', false)
             console.log("response",response);
             const audioBlob = await response.blob();
             const audioUrl = URL.createObjectURL(audioBlob);
@@ -58,9 +72,14 @@ async function uploadSpeech(transcript) {
                 $("#output_voice").append(audioElement);
             }
         } else {
+            $("#stop span").addClass("d-none");
+        $("#stop , #start").attr('disabled', false)
+        
             console.error('Failed to upload audio:', response.statusText);
         }
     } catch (error) {
+        $("#stop span").addClass("d-none");
+        $("#stop , #start").attr('disabled', false)
         console.error('Error uploading audio:', error);
     }
 }

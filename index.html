@@ -22,9 +22,9 @@
 <body>
     <header>
         <i class="fas fa-headphones"></i> <!-- Example icon -->
-        <span class="welcome-text">Welcome</span> <!-- Welcome text -->
+        <span class="welcome-text">DIGITAL TRANSLATOR</span> <!-- Welcome text -->
     </header>
-    <div>
+    <div style="background: radial-gradient(circle, rgba(198, 235, 216, 1) 0%, rgba(19, 149, 83, 0.905374649859944) 100%);">
         <!-- <div class="container">
             <div class="child-container">
                 <div class="check">
@@ -50,7 +50,7 @@
                 <div class="dot"></div>
                 <div class="dot"></div>
               </div></button> -->
-              <button class="btn btn-success" id="translateButton" type="button"  onclick="uploadAudio()" ><span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>  Translate</button>
+              <button class=" btn-success" id="translateButton" type="button"  onclick="uploadAudio()" ><span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>  Translate</button>
             <h4>Output:</h4>
             <div id="output_audio"></div>
         </div>
@@ -60,7 +60,7 @@
              <!-- Microphone icon -->
             <!-- <button id="translateButton" onclick="uploadAudio()">Convert</button> -->
             <button id="start"><i class="fas fa-microphone mr-1" id="micIcon"></i>Start Recording</button>
-            <button id="stop">Stop Recording</button>
+            <button id="stop"><span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span><span  id="recording" class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span> Stop Recording</button>
             <h4>Output:</h4>
             <div id="output_voice"></div>
         </div>
