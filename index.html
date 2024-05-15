@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Translator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="translator.css">
+    <style>
+        /* Style for the header bar */
+        header {
+            background-image: url('music.gif'); /* Replace 'music.gif' with the path to your GIF */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center; /* Align items vertically */
+            position: relative;
+            background-color: black;
+        }
+
+        /* Style for the icon */
+        header i {
+            margin-right: 10px;
+            font-size: 50px; /* Increase the size */
+            padding-left: 20px; /* Add padding to the left */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Style for the welcome text */
+        header .welcome-text {
+            font-size: 24px; /* Adjust the size */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <i class="fas fa-headphones"></i> <!-- Example icon -->
+        <span class="welcome-text">Welcome</span> <!-- Welcome text -->
+    </header>
+    <div>
+        <div class="container">
+            <div class="child-container">
+                <div class="check">
+                    <h1 style="white-space: nowrap; font-size: 25px;">English to Tamil Audio Translator</h1>
+                    <label for="audioFile">Select an audio file</label>
+                    <input type="file" id="audioFile" accept="audio/*" />
+                    <button id="translateButton" onclick="uploadAudio()">Translate</button>
+                    <br> <!-- Adding line break for icon placement -->
+                    
+                    <i class="fas fa-microphone" id="micIcon"></i> <!-- Microphone icon -->
+                    <button id="translateButton" onclick="uploadAudio()">Convert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="translator.js"></script>
+    <script>
+        // Get the microphone icon element
+        const micIcon = document.getElementById("micIcon");
+
+        // Add event listener for click event
+        micIcon.addEventListener("click", function() {
+            // Implement logic to start listening for audio input here
+            // For example, you can use Web Speech API for speech recognition
+            // Here's a basic example using Web Speech API's SpeechRecognition:
+            const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+            recognition.lang = "en-US"; // Language for recognition
+            recognition.start(); // Start recognition
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                // Do something with the transcribed speech, like translating it or processing it
+                console.log("Transcript:", transcript);
+            };
+        });
+    </script>
+</body>
+</html>
